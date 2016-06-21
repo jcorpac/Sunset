@@ -7,11 +7,6 @@ import android.os.Bundle;
 public class SunsetActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
-        return null;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        return SunsetFragment.newInstance();
     }
 }
