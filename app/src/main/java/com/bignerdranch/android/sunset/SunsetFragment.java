@@ -27,6 +27,8 @@ public class SunsetFragment extends Fragment {
     private int mBlueSkyColor;
     private int mSunsetSkyColor;
     private int mNightSkyColor;
+    private int mBrightSun;
+    private int mDimSun;
 
     private boolean isSunUp = true;
 
@@ -45,7 +47,10 @@ public class SunsetFragment extends Fragment {
         mBlueSkyColor = resources.getColor(R.color.blue_sky);
         mSunsetSkyColor = resources.getColor(R.color.sunset_sky);
         mNightSkyColor = resources.getColor(R.color.night_sky);
+        mBrightSun = resources.getColor(R.color.sun_rays_bright);
+        mDimSun = resources.getColor(R.color.sun_rays_dim);
 
+        sunAnimation();
         mSceneView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,5 +111,14 @@ public class SunsetFragment extends Fragment {
         animatorSet.start();
 
         isSunUp = true;
+    }
+
+    private void sunAnimation() {
+        ObjectAnimator sunObjectAnimator = ObjectAnimator.ofObject(mSunView, "backgroundColor", new ArgbEvaluator(), mBrightSun, mDimSun)
+                .setDuration(1000);
+        sunObjectAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        sunObjectAnimator.setRepeatMode(ObjectAnimator.REVERSE);
+
+        sunObjectAnimator.start();
     }
 }
